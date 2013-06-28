@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace Tetris.Model
 {
@@ -13,7 +14,13 @@ namespace Tetris.Model
         public Piece GetNewPiece()
         {
             var shape = GetRandomShape();
-            return new Piece(shape);
+            var color = GetRandomColor();
+            return new Piece(shape, color);
+        }
+
+        private Color GetRandomColor()
+        {
+            return GetRandomValue(new[] {Color.Red, Color.Blue, Color.Yellow, Color.Green});
         }
 
         private static Shape GetRandomShape()

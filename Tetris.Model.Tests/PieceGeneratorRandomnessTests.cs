@@ -11,19 +11,35 @@ namespace Tetris.Model.Tests
         [TestMethod]
         public void GetNewPiece_ReturnsPiecesOfRandomShape()
         {
-            var generator = new PieceGenerator();
-            var pieces1 = new List<Piece>();
-
             // Act
-            Execute.This(() =>
-                {
-                    var newPiece = generator.GetNewPiece();
-                    pieces1.Add(newPiece);
-                }, 50.Times());
-            var pieces = (IEnumerable<Piece>) pieces1;
+            var pieces = GetRandomPieces();
 
             // Assert
             pieces.Should().NotHaveTheSame(p => p.Shape);
+        }
+
+        [TestMethod]
+        public void GetNewPiece_ReturnsPiecesOfRandomColor()
+        {
+            // Act
+            var pieces = GetRandomPieces();
+
+            // Assert
+            pieces.Should().NotHaveTheSame(p => p.Color);
+        }
+
+        private static IEnumerable<Piece> GetRandomPieces()
+        {
+            var generator = new PieceGenerator();
+            var pieces = new List<Piece>();
+
+            Execute.This(() =>
+                {
+                    var newPiece = generator.GetNewPiece();
+                    pieces.Add(newPiece);
+                }, 50.Times());
+
+            return pieces;
         }
     }
 }
