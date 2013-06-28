@@ -6,7 +6,6 @@ namespace Tetris.Model
     {
         private readonly Shape _shape;
         private readonly Color _color;
-        private readonly Position _position;
 
         public Piece(Shape shape = default(Shape), Color color = default (Color))
         {
@@ -18,7 +17,7 @@ namespace Tetris.Model
         {
             _shape = originator.Shape;
             _color = originator.Color;
-            _position = position;
+            Position = position;
         }
 
         public Shape Shape
@@ -31,15 +30,6 @@ namespace Tetris.Model
             get { return _color; }
         }
 
-        public Position Position
-        {
-            get { return _position; }
-        }
-
-        public Piece AtRow(int row)
-        {
-            var position = new Position(row);
-            return new Piece(this, position);
-        }
+        public Position Position { get; set; }
     }
 }

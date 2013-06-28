@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿using FluentAssertions;
+using TechTalk.SpecFlow;
 using Tetris.Model;
 using Tetris.Specs.ShouldExtensions;
 
@@ -38,11 +39,24 @@ namespace Tetris.Specs.Bindings
             CurrentGame.ShouldHave().NoCurrentPiece();
         }
 
+        [Given(@"there is a current piece")]
+        public void GivenThereIsACurrentPiece()
+        {
+            CurrentGame.Tick();
+            CurrentGame.ShouldHave().ACurrentPiece();
+        }
+
+        [Given(@"there is no obstacle under the piece")]
+        public void GivenThereIsNoObstacleUnderThePiece()
+        {
+            CurrentGame.ShouldHave().NoObstacleUnderThePiece();
+        }
+
         [When(@"I do nothing")]
         [When(@"I do not tick")]
         public void WhenIDoNothing()
         {
-            // To nothing
+            // Do nothing
         }
 
         [When(@"I start the game")]
@@ -66,6 +80,10 @@ namespace Tetris.Specs.Bindings
         [When(@"I tick")]
         public void WhenITick()
         {
+            if (CurrentGame.CurrentPiece != null)
+            {
+                PositionBeforeTick = CurrentGame.CurrentPiece.Position;
+            }
             CurrentGame.Tick();
         }
 
@@ -102,8 +120,14 @@ namespace Tetris.Specs.Bindings
         [Then(@"the piece is on the top row")]
         public void ThenThePieceIsOnTheTopRow()
         {
-            int topRow = CurrentGame.RowCount;
+            var topRow = CurrentGame.RowCount;
             CurrentGame.ShouldHave().CurrentPieceAtRow(topRow);
+        }
+
+        [Then(@"the piece drops by one row")]
+        public void ThenThePieceDropsByOneRow()
+        {
+            CurrentGame.CurrentPiece.Position.Row.Should().Be(PositionBeforeTick.Row - 1);
         }
 
         #region Infrastructure
@@ -112,6 +136,12 @@ namespace Tetris.Specs.Bindings
         {
             get { return ScenarioContext.Current.Get<Game>(); }
             set { ScenarioContext.Current.Set(value); }
+        }
+
+        private Position PositionBeforeTick
+        {
+            get { return ScenarioContext.Current.Get<Position>("beforeTick"); }
+            set { ScenarioContext.Current.Set(value, "beforeTick"); }
         }
 
         private static Game GetNewGame()

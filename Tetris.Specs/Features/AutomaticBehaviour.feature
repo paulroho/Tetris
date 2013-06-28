@@ -17,3 +17,9 @@ Scenario: Throw new piece on the game
 	Then a new piece is put into the game
 	And the piece is on the top row
 # ToDo: On a unit test level, ensure that the orientation and position of the new piece are random
+
+Scenario: Let the piece fall down
+	Given there is a current piece
+	And there is no obstacle under the piece
+	When I tick
+	Then the piece drops by one row

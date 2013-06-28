@@ -40,7 +40,16 @@
 
         public void Tick()
         {
-            _currentPiece = _pieceGenerator.GetNewPiece().AtRow(RowCount);
+            if (_currentPiece == null)
+            {
+                var piece = _pieceGenerator.GetNewPiece();
+                piece.Position = new Position(RowCount);
+                _currentPiece = piece;
+            }
+            else
+            {
+                _currentPiece.Position = new Position(_currentPiece.Position.Row - 1);
+            }
         }
 
         public int RowCount { get; set; }

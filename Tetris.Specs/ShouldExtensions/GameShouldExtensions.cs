@@ -53,6 +53,7 @@ namespace Tetris.Specs.ShouldExtensions
             void NoCurrentPiece();
             void ACurrentPiece();
             void CurrentPieceAtRow(int row);
+            void NoObstacleUnderThePiece();
         }
 
         private class GameShouldHaveCondition : IGameShouldHaveCondition
@@ -77,6 +78,12 @@ namespace Tetris.Specs.ShouldExtensions
             public void CurrentPieceAtRow(int row)
             {
                 _game.CurrentPiece.Position.Row.Should().Be(row);
+            }
+
+            public void NoObstacleUnderThePiece()
+            {
+                // Simplistic by now
+                _game.CurrentPiece.Position.Row.Should().BeGreaterThan(1);
             }
         }
     }
