@@ -2,12 +2,14 @@
 {
     public class Game
     {
+        private readonly IPieceGenerator _pieceGenerator;
         private GameState _state;
         private Piece _currentPiece;
 
-        public Game()
+        public Game(IPieceGenerator pieceGenerator)
         {
             _state = GameState.Blank;
+            _pieceGenerator = pieceGenerator;
         }
 
         public GameState State
@@ -37,7 +39,7 @@
 
         public void Tick()
         {
-            _currentPiece = new Piece();
+            _currentPiece = _pieceGenerator.GetNewPiece();
         }
     }
 }

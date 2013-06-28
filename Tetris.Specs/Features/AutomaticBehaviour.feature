@@ -7,6 +7,10 @@ Background:
 	Given I have a game
 	And the game is running
 
+Scenario: Observe initial state
+	When I do not tick
+	Then the game has no current piece
+
 Scenario: Throw new piece on the game
 	Given there is no current piece
 	When I tick

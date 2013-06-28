@@ -39,6 +39,7 @@ namespace Tetris.Specs.Bindings
         }
 
         [When(@"I do nothing")]
+        [When(@"I do not tick")]
         public void WhenIDoNothing()
         {
             // To nothing
@@ -92,6 +93,12 @@ namespace Tetris.Specs.Bindings
             CurrentGame.ShouldHave().ACurrentPiece();
         }
 
+        [Then(@"the game has no current piece")]
+        public void ThenTheGameHasNoCurrentPiece()
+        {
+            CurrentGame.ShouldHave().NoCurrentPiece();
+        }
+
         #region Infrastructure
 
         private Game CurrentGame
@@ -102,19 +109,19 @@ namespace Tetris.Specs.Bindings
 
         private static Game GetNewGame()
         {
-            return new Game();
+            return new Game(new PieceGenerator());
         }
 
         private Game GetRunningGame()
         {
-            var game = new Game();
+            var game = GetNewGame();
             game.Start();
             return game;
         }
 
         private Game GetPausingGame()
         {
-            var game = new Game();
+            var game = GetNewGame();
             game.Pause();
             return game;
         }
