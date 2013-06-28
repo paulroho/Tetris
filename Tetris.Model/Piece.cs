@@ -13,13 +13,6 @@ namespace Tetris.Model
             _color = color;
         }
 
-        private Piece(Piece originator, Position position)
-        {
-            _shape = originator.Shape;
-            _color = originator.Color;
-            Position = position;
-        }
-
         public Shape Shape
         {
             get { return _shape; }
