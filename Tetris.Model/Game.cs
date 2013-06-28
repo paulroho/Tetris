@@ -42,17 +42,27 @@
         {
             if (_currentPiece == null)
             {
-                var piece = _pieceGenerator.GetNewPiece();
-                piece.Position = new Position(RowCount);
-                _currentPiece = piece;
+                _currentPiece = CreateNewPiece();
             }
             else
             {
                 if (_currentPiece.Position.Row > 1)
                 {
-                    _currentPiece.Position = new Position(_currentPiece.Position.Row - 1);
+                    LowerPiece();
                 }
             }
+        }
+
+        private Piece CreateNewPiece()
+        {
+            var piece = _pieceGenerator.GetNewPiece();
+            piece.Position = new Position(RowCount);
+            return piece;
+        }
+
+        private void LowerPiece()
+        {
+            _currentPiece.Position = new Position(_currentPiece.Position.Row - 1);
         }
 
         public int RowCount { get; set; }
