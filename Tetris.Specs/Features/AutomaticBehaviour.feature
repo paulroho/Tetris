@@ -23,3 +23,9 @@ Scenario: Let the piece fall down
 	And there is no obstacle under the piece
 	When I tick
 	Then the piece drops by one row
+
+Scenario: Stop falling the piece on the ground
+	Given there is a current piece
+	And it is at the bottom row
+	When I tick
+	Then the piece remains at the bottom row

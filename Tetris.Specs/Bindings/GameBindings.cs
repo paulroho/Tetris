@@ -52,6 +52,12 @@ namespace Tetris.Specs.Bindings
             CurrentGame.ShouldHave().NoObstacleUnderThePiece();
         }
 
+        [Given(@"it is at the bottom row")]
+        public void GivenItIsAtTheBottomRow()
+        {
+            CurrentGame.CurrentPiece.Position = new Position(1);
+        }
+
         [When(@"I do nothing")]
         [When(@"I do not tick")]
         public void WhenIDoNothing()
@@ -128,6 +134,12 @@ namespace Tetris.Specs.Bindings
         public void ThenThePieceDropsByOneRow()
         {
             CurrentGame.CurrentPiece.Position.Row.Should().Be(PositionBeforeTick.Row - 1);
+        }
+
+        [Then(@"the piece remains at the bottom row")]
+        public void ThenThePieceRemainsAtTheBottomRow()
+        {
+            CurrentGame.CurrentPiece.Position.Row.Should().Be(1);
         }
 
         #region Infrastructure

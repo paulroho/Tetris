@@ -48,7 +48,10 @@
             }
             else
             {
-                _currentPiece.Position = new Position(_currentPiece.Position.Row - 1);
+                if (_currentPiece.Position.Row > 1)
+                {
+                    _currentPiece.Position = new Position(_currentPiece.Position.Row - 1);
+                }
             }
         }
 
