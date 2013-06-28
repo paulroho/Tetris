@@ -16,4 +16,4 @@ Scenario: Throw new piece on the game
 	When I tick
 	Then a new piece is put into the game
 	And the piece is on the top row
-# ToDo: On a unit test level, ensure that the kind (shape, colour) as well as the orientation and position of the new piece are random
+# ToDo: On a unit test level, ensure that the orientation and position of the new piece are random
