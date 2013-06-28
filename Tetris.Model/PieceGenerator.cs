@@ -15,13 +15,7 @@ namespace Tetris.Model
         {
             var shape = GetRandomShape();
             var color = GetRandomColor();
-            var orientation = GetRandomOrientation();
-            return new Piece(shape, color, orientation);
-        }
-
-        private Orientation GetRandomOrientation()
-        {
-            return GetRandomEnum<Orientation>();
+            return new Piece(shape, color);
         }
 
         private Color GetRandomColor()

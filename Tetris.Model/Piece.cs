@@ -6,13 +6,11 @@ namespace Tetris.Model
     {
         private readonly Shape _shape;
         private readonly Color _color;
-        private readonly Orientation _orientation;
 
-        public Piece(Shape shape = default(Shape), Color color = default (Color), Orientation orientation = default (Orientation))
+        public Piece(Shape shape = default(Shape), Color color = default (Color))
         {
             _shape = shape;
             _color = color;
-            _orientation = orientation;
         }
 
         public Shape Shape
@@ -23,11 +21,6 @@ namespace Tetris.Model
         public Color Color
         {
             get { return _color; }
-        }
-
-        public Orientation Orientation
-        {
-            get { return _orientation; }
         }
     }
 }

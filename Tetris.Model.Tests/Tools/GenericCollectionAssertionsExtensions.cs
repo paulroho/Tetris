@@ -46,14 +46,14 @@ namespace Tetris.Model.Tests.Tools
 
         private static bool IsNiceToString<TValue>()
         {
-            if (typeof (TValue).IsValueType)
+            if (typeof (TValue).IsEnum)
                 return true;
             return IsMethodOverridden<TValue>("ToString");
         }
 
         private static bool IsMethodOverridden<TValue>(string methodName)
         {
-            var methodInfo = typeof(TValue).GetMethod(methodName, BindingFlags.Instance);
+            var methodInfo = typeof(TValue).GetMethod(methodName, BindingFlags.Instance | BindingFlags.Public);
             return methodInfo != null && methodInfo.DeclaringType == typeof (TValue);
         }
 
