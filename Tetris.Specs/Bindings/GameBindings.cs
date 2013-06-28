@@ -99,6 +99,13 @@ namespace Tetris.Specs.Bindings
             CurrentGame.ShouldHave().NoCurrentPiece();
         }
 
+        [Then(@"the piece is on the top row")]
+        public void ThenThePieceIsOnTheTopRow()
+        {
+            int topRow = CurrentGame.RowCount;
+            CurrentGame.ShouldHave().CurrentPieceAtRow(topRow);
+        }
+
         #region Infrastructure
 
         private Game CurrentGame

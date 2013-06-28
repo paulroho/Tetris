@@ -8,6 +8,7 @@
 
         public Game(IPieceGenerator pieceGenerator)
         {
+            RowCount = 20;
             _state = GameState.Blank;
             _pieceGenerator = pieceGenerator;
         }
@@ -39,7 +40,9 @@
 
         public void Tick()
         {
-            _currentPiece = _pieceGenerator.GetNewPiece();
+            _currentPiece = _pieceGenerator.GetNewPiece().AtRow(RowCount);
         }
+
+        public int RowCount { get; set; }
     }
 }
