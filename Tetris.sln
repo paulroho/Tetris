@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tetris.Model.Tests", "Tetri
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tetris.Specs", "Tetris.Specs\Tetris.Specs.csproj", "{F037B5D9-849E-4E0B-B288-AB41F90D9ED0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{BBB847BB-1144-4934-9DDF-B37433B2A197}"
+	ProjectSection(SolutionItems) = preProject
+		EvaluateSpecs.cmd = EvaluateSpecs.cmd
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
