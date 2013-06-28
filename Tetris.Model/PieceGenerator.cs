@@ -15,7 +15,13 @@ namespace Tetris.Model
         {
             var shape = GetRandomShape();
             var color = GetRandomColor();
-            return new Piece(shape, color);
+            var orientation = GetRandomOrientation();
+            return new Piece(shape, color, orientation);
+        }
+
+        private Orientation GetRandomOrientation()
+        {
+            return GetRandomEnum<Orientation>();
         }
 
         private Color GetRandomColor()
@@ -25,7 +31,12 @@ namespace Tetris.Model
 
         private static Shape GetRandomShape()
         {
-            return GetRandomValue((Shape[]) Enum.GetValues(typeof(Shape)));
+            return GetRandomEnum<Shape>();
+        }
+
+        private static T GetRandomEnum<T>() where T:struct 
+        {
+            return GetRandomValue((T[]) Enum.GetValues(typeof(T)));
         }
 
         static readonly Random Rand = new Random();

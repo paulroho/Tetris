@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Game.cs" />
     <Compile Include="GameState.cs" />
+    <Compile Include="Orientation.cs" />
     <Compile Include="Piece.cs" />
     <Compile Include="PieceGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
