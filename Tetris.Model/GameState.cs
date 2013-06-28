@@ -2,7 +2,7 @@ namespace Tetris.Model
 {
     public enum GameState
     {
-        Blank,
+        Blank = 1,
         Running,
         Pausing
     }

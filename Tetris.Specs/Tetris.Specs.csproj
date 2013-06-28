@@ -59,6 +59,11 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Bindings\GameBindings.cs" />
+    <Compile Include="Features\AutomaticBehaviour.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AutomaticBehaviour.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\GlobalInteraction.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -69,6 +74,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Features\AutomaticBehaviour.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AutomaticBehaviour.feature.cs</LastGenOutput>
+    </None>
     <None Include="Features\GlobalInteraction.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GlobalInteraction.feature.cs</LastGenOutput>

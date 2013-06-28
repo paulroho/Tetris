@@ -5,23 +5,28 @@ namespace Tetris.Specs.ShouldExtensions
 {
     internal static class GameShouldExtensions
     {
-        public static IGameShouldCondition ShouldBe(this Game game)
+        public static IGameShouldBeCondition ShouldBe(this Game game)
         {
-            return new GameShouldCondition(game);
+            return new GameShouldBeCondition(game);
         }
 
-        internal interface IGameShouldCondition
+        public static IGameShouldHaveCondition ShouldHave(this Game game)
+        {
+            return new GameShouldHaveCondition(game);
+        }
+
+        internal interface IGameShouldBeCondition
         {
             void Blank();
             void Running();
             void Pausing();
         }
 
-        internal class GameShouldCondition : IGameShouldCondition
+        private class GameShouldBeCondition : IGameShouldBeCondition
         {
             private readonly Game _game;
 
-            public GameShouldCondition(Game game)
+            public GameShouldBeCondition(Game game)
             {
                 _game = game;
             }
@@ -40,6 +45,32 @@ namespace Tetris.Specs.ShouldExtensions
             public void Pausing()
             {
                 _game.State.Should().Be(GameState.Pausing);
+            }
+        }
+
+        internal interface IGameShouldHaveCondition
+        {
+            void NoCurrentPiece();
+            void ACurrentPiece();
+        }
+
+        private class GameShouldHaveCondition : IGameShouldHaveCondition
+        {
+            private readonly Game _game;
+
+            public GameShouldHaveCondition(Game game)
+            {
+                _game = game;
+            }
+
+            public void NoCurrentPiece()
+            {
+                _game.CurrentPiece.Should().BeNull();
+            }
+
+            public void ACurrentPiece()
+            {
+                _game.CurrentPiece.Should().NotBeNull();
             }
         }
     }

@@ -32,6 +32,12 @@ namespace Tetris.Specs.Bindings
             CurrentGame = GetPausingGame();
         }
 
+        [Given(@"there is no current piece")]
+        public void GivenThereIsNoCurrentPiece()
+        {
+            CurrentGame.ShouldHave().NoCurrentPiece();
+        }
+
         [When(@"I do nothing")]
         public void WhenIDoNothing()
         {
@@ -56,6 +62,12 @@ namespace Tetris.Specs.Bindings
             CurrentGame.Resume();
         }
 
+        [When(@"I tick")]
+        public void WhenITick()
+        {
+            CurrentGame.Tick();
+        }
+
         [Then(@"the game should be blank")]
         public void ThenTheGameShouldBeBlank()
         {
@@ -73,6 +85,14 @@ namespace Tetris.Specs.Bindings
         {
             CurrentGame.ShouldBe().Pausing();
         }
+
+        [Then(@"a new piece is put into the game")]
+        public void ThenANewPieceIsPutIntoTheGame()
+        {
+            CurrentGame.ShouldHave().ACurrentPiece();
+        }
+
+        #region Infrastructure
 
         private Game CurrentGame
         {
@@ -98,5 +118,7 @@ namespace Tetris.Specs.Bindings
             game.Pause();
             return game;
         }
+
+        #endregion
     }
 }
